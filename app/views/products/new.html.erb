@@ -1,0 +1,11 @@
+<h1>Products#new</h1>
+<!-- <p>Find me in app/views/products/new.html.erb</p> -->
+<%= form_with(model: @product, url: products_path, method: :post) do |f| %>
+  <%= f.text_field :name %>
+  <%= f.text_area :description %>
+  <%= f.number_field :price %>
+  <%= f.collection_select :category_id, Category.all, :id, :name %>
+  <%= f.submit "Create" %>
+<% end %>
+
+<%= link_to "Back", products_path %>
