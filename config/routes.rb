@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # devise_for :users
   # get 'products/index'
   # get 'products/show'
   # get 'products/edit'
@@ -8,4 +9,20 @@ Rails.application.routes.draw do
   # get 'products/destroy'
   resources :products
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations',
+    passwords: 'users/passwords',
+    confirmations: 'users/confirmations',
+    unlocks: 'users/unlocks'
+  }
+
+  devise_scope :user do
+    root to: 'users/sessions#new'
+    get "signup", :to => "users/registrations#new"
+    get 'verify', to: "users/registrations#verify"
+    get "login", to: "users/sessions#new"
+    get "logout", to: "users/sessions#destroy"
+  end
 end

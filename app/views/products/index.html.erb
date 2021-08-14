@@ -4,7 +4,7 @@
   <%= product.name %>
   <%= product.description %>
   <%= product.price %>
-  <%= link_to "show", products_path(product) %>
+  <%= link_to "show", product_path(product) %>
   <%= link_to "edit", edit_product_path(product) %>
   <%= link_to "Delete", product_path(product), method: :delete, date: {confirm: "本当に削除しますか？"} %>
 <% end %>

@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <h2 class="mt-3 mb-3">新規会員登録</h2>
+    <hr>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <!-- <%= render "users/shared/error_messages", resource: resource %> -->
+      <div class="form-group row">
+        <%= f.label :name, '氏名<span class="ml-1 samazon-require-input-label"><span class="samazon-require-input-label-text">(必須)</span></span>'.html_safe, class: "col-md-5 col-form-label text-md-left d-flex align-items-center" %>
+        <div class="col-md-7">
+          <%= f.text_field :name, class: "form-control #{"is-invalid" if resource.errors.messages[:name].present?} samazon-login-input",
+            autoforcus: true,
+            required: "",
+            autocomplete: "name",
+            placeholder: "侍　太郎"
+            %>
+            <% if resource.errors.messages[:name].present? %>
+              <span class="samazon-error-message">
+                <strong><%= resource.errors.full_message_for(:name).first %></strong>
+              </span>
+            <% end %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :email, 'メールアドレス<span class="ml-1 samazon-require-input-label"><span class="samazon-require-input-label-text">（必須）</span></span>'.html_safe ,class: "col-md-5 text-md-left col-form-label d-flex align-items-center" %>
+        <div class="col-md-7" style="margin-top: 10px;">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control #{"is-invalid" if resource.errors.messages[:email].present?} samazon-login-input", placeholder: "メールアドレス" %>
+          <% if resource.errors.messages[:email].present? %>
+            <span class="samazon-error-message">
+              <strong><%= resource.errors.full_messages_for(:email).first %></strong>
+            </span>
+          <% end %>
+        </div>
+      </div>
+      <div class="row form-group" style="margin-top: 10px;">
+        <%= f.label :postal_code, '郵便番号<span class="ml-1 samazon-require-input-label"><span class="samazon-require-input-label-text">（必須）</span></span>'.html_safe, class: "col-md-5 text-md-left d-flex align-items-center" %>
+        <div class="col-md-7">
+          <%= f.text_field :postal_code, required: "", placeholder: "150-0043", class: "form-control #{"is-invalid" if resource.errors.messages[:postal_code].present?} samazon-login-input" %>
+        </div>
+      </div>
+      <div class="form-group row" style="margin-top: 10px;">
+        <%= f.label :address, '住所<span class="samazon-require-input-label ml-1"><span class="samazon-require-input-label-text">（必須）</span></span>'.html_safe, class: "col-md-5 text-md-left d-flex align-items-center" %>
+        <div class="col-md-7">
+          <%= f.text_field :address, required: "", placeholder: "東京都渋谷区道玄坂2丁目11-1", class: "form-control samazon-login-input #{"is-invalid" if resource.errors.messages[:address].present?}" %>
+        </div>
+      </div>
+      <div class="form-group row" style="margin-top: 10px;">
+        <%= f.label :phone, '電話番号<span class="samazon-require-input-label ml-1"><span class="samazon-require-input-label-text">（必須）</span></span>'.html_safe, class: "col-md-5 text-md-left d-flex align-items-center" %>
+        <div class="col-md-7">
+          <%= f.text_field :phone, required: "", placeholder: "03-0000-0000", class: "form-control samazon-login-input #{"is-invalid" if resource.errors.messages[:phone].present?}" %>
+        </div>
+      </div>
+      
+      <div class="form-group row" style="margin-top: 10px;">
+        <%= f.label :password, 'パスワード<span class="samazon-require-input-label ml-1"><span class="samazon-require-input-label-text">（必須）</span></span>'.html_safe, class: "col-md-5 text-md-left d-flex align-items-center" %>
+        <div class="col-md-7">
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード", class: "form-control #{"is-invalid" if resource.errors.messages[:password].present?} samazon-login-input" %>
+          <% if resource.errors.messages[:password].present? %>
+            <span class="samazon-error-message">
+              <strong><%= resource.errors.full_messages_for(:password).first %></strong>
+            </span>
+          <% end %>
+        </div>
+      </div>
+    
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+    
+      <div class="actions">
+        <%= f.submit "Sign up" %>
+      </div>
+    <% end %>
+    
+    <%= render "users/shared/links" %>
+
+  </div>
+</div>

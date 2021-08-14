@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <h2 class="mb-3 mt-3">パスワード再設定</h2>
+      
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+        <!-- <%= render "users/shared/error_messages", resource: resource %> -->
+        <%= f.hidden_field :reset_password_token %>
+      
+        <div class="form-group">
+          <%= f.label :password, "New password" %><br />
+          <!-- <% if @minimum_password_length %> -->
+            <!-- <em>(<%= @minimum_password_length %> characters minimum)</em><br /> -->
+          <!-- <% end %> -->
+          <%= f.password_field :password, autofocus: true, autocomplete: "new-password", placeholder: "パスワード", class: "form-control #{"is-invalid" if resource.errors.messages[:password].present?} samazon-login-input" %>
+          <% if resource.errors.messages[:password].present? %>
+            <span class="samazon-error-message">
+              <strong><%= resource.errors.full_messages_for(:password).first %></strong>
+            </span>
+          <% end %>
+        </div>
+      
+        <div class="form-group">
+          <!-- <%= f.label :password_confirmation, "Confirm new password" %><br /> -->
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード（確認用）", class: "form-control samazon-login-input" %>
+        </div>
+      
+        <div class="form-group">
+          <%= f.submit "パスワード再設定", class: "btn mt-3 samazon-submit-button w-100" %>
+        </div>
+      <% end %>
+      
+      <!-- <%= render "users/shared/links" %> -->
+    </div>
+  </div>
+</div>
