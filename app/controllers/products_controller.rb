@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
+  PER = 15
   def index
-    @products = Product.all
+    @products = Product.page(params[:page]).per(PER)
+    @categories = Category.all
   end
 
   def show
@@ -37,6 +39,11 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
+  def favorite
+    @product = Product.find(params[:id])
+    current_user.toggle_like!(@product)
+    redirect_to product_path(@product)
+  end
   private
 
   def product_params

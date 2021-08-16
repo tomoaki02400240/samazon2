@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   # get 'products/create'
   # get 'products/update'
   # get 'products/destroy'
-  resources :products
+  resources :products do
+    member do
+      get "favorite"
+    end
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   post "review/:id", to: "reviews#create", as: :reviews_create
   devise_for :users, controllers: {
