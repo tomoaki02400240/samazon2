@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
  
+  get 'users/edit'
+  get 'users/update'
+  get 'users/mypage'
   # devise_for :users
   # get 'products/index'
   # get 'products/show'
