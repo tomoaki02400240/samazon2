@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
  
-  get 'users/edit'
-  get 'users/update'
-  get 'users/mypage'
+ 
   # devise_for :users
   # get 'products/index'
   # get 'products/show'
@@ -18,6 +16,7 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   post "review/:id", to: "reviews#create", as: :reviews_create
+  
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
@@ -32,5 +31,14 @@ Rails.application.routes.draw do
     get 'verify', to: "users/registrations#verify"
     get "login", to: "users/sessions#new"
     get "logout", to: "users/sessions#destroy"
+  end
+
+  resources :users, only: [:edit, :update] do
+    collection do
+      get "mypage", to: "users#mypage"
+      put "mypage", to: "users#update"
+      get "mypage/edit", to: "users#edit"
+      get "mypage/address/edit", to: "users#edit_address"
+    end
   end
 end

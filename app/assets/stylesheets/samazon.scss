@@ -197,3 +197,31 @@
   letter-spacing: normal;
   color: #191919;
 }
+
+.clover {
+  display: flex;
+  flex-wrap: wrap;
+  width: 420px;
+  margin: 20px auto;
+}
+.clover img {
+  margin: 5px;
+}
+.img1 {
+  max-width: 100%;
+  border-radius: 50% 50% 0 50%;
+}
+.img2 {
+  border-radius: 50% 50% 50% 0
+}
+.img3 {
+  border-radius: 50% 0 50% 50%
+}
+.img4 {
+  border-radius: 0 50% 50% 50%
+}
+
+.user-edit-label {
+  cursor: pointer;
+  cursor: hand;
+}
