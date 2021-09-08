@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
    if sort_params.present?
       @category = Category.request_category(sort_params[:sort_category])
       @products = Product.sort_product(sort_params, params[:page])
+      
    elsif category_params.present?
       @category = Category.request_category(params[:category])
       @products = Product.category_products(@category, params[:page])
@@ -14,6 +15,8 @@ class ProductsController < ApplicationController
       @products = Product.display_list(params[:page])
    end
 
+   
+   
 
     @categories = Category.all
     @major_category_names = Category.pluck(:major_category_name).uniq

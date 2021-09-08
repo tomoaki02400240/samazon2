@@ -24,7 +24,8 @@ class Product < ApplicationRecord
  scope :sort_product, -> (sort_order, page) {
     where(category_id: sort_order[:sort_category]).order(sort_order[:sort]).page(page).per(PER)
  }
-  scope :sort_list, -> {
+  
+ scope :sort_list, -> {
     {
     "並び替え" => "",
     "価格の安い順" => "price asc",
