@@ -8,12 +8,12 @@ class ReviewsController < ApplicationController
     # debugger
     review.save
     redirect_to product_path(product)
-    
+   # debugger
   end
 
   private 
 
   def review_params
-    params.permit(:content).merge(user_id: current_user.id)
+    params.permit(:content, :score).merge(user_id: current_user.id, product_id: params[:product_id])
   end
 end

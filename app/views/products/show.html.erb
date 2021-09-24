@@ -2,7 +2,7 @@
 <div class="d-flex justify-content-center">
   <div class="row w-75">
     <div class="col-5 offset-1">
-      <%= image_tag "/images/dummy.png", class: "w-100 img-fluid", style: "border-radius: 20px;" %>
+      <%= image_tag "/images/dummy.png", class: "w-100 img-fuild", style: "border-radius: 20px;" %>
     </div>
     <div class="col">
       <div class="d-flex flex-column">
@@ -19,8 +19,9 @@
         <hr>
       </div>
       <% if user_signed_in? %>
-        <%= form_with model: @product do |f| %>
-          <%= f.hidden_field :id, value: @product.id %>
+        
+        <%= form_with(url: cart_create_users_path, method: :post, local: true) do |f| %>
+          <%= f.hidden_field :product_id, value: @product.id %>
           <%= f.hidden_field :name, value: @product.name %>
           <%= f.hidden_field :price, value: @product.price %>
           <div class="form-group row">
@@ -66,6 +67,9 @@
                <div class="row">
                  <div class="offset-md-5 col-md-5">
                    <%= form_with model: @review, url: reviews_create_path(@product) do |f| %>
+                   <h4>評価</h4>
+                   <%= f.select :score, @star_repeat_select, {}, class: 'form-control m-2 review-score-color' %>
+                   <h4>レビュー内容</h4>
                      <%= f.text_area :content, class: "form-control mb-2" %>
                      <%= f.submit "レビューを追加" , class:"btn samazon-submit-button"%>
                    <% end %>

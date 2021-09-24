@@ -27,6 +27,9 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @reviews = @product.reviews.order(created_at: "DESC")
+    #@review = Review.new
+    
+    @star_repeat_select = Review.star_repeat_select
   end
 
   def edit
@@ -44,7 +47,7 @@ class ProductsController < ApplicationController
     # @product.category_id = 1
     @product.save
     redirect_to product_path(@product)
-  end
+  end   
 
   def update
     @product = Product.find(params[:id])

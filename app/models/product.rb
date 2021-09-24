@@ -35,6 +35,8 @@ class Product < ApplicationRecord
 }
   }
 
-
+scope :in_cart_product_names, -> (cart_user_ids){
+  where(id: cart_user_ids).pluck(:name)
+}
   
 end
